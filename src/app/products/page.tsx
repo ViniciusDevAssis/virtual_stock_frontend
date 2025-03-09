@@ -25,7 +25,7 @@ export default function Products() {
                 <th className="px-4 py-2 text-left">Ações</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="text-black">
               <tr className="border-b">
                 <td className="px-4 py-2 hidden sm:table-cell">1</td>
                 <td className="px-4 py-2">Produto 1</td>
