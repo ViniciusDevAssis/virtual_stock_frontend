@@ -17,6 +17,7 @@ export function CreateProduct({ addProduct }: CreateProductProps) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [quantity, setQuantity] = useState("");
   const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -114,6 +115,20 @@ export function CreateProduct({ addProduct }: CreateProductProps) {
               />
             </div>
           </div>
+
+          <div className="flex">
+            <div className="flex flex-col mr-4">
+              <label className="block text-gray-700">Quantidade</label>
+              <input
+                type="number"
+                className="w-full text-black px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-dark_green"
+                placeholder="0"
+                value={quantity}
+                onChange={(e) => { setQuantity(parseInt(e.target.value)); }}
+              />
+            </div>
+          </div>
+          
           {error ? <p className="text-red-500">{error}</p> : ""}
           <button
             type="submit"

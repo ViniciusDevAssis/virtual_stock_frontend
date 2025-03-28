@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { FaStore } from "react-icons/fa6";
 
 export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -26,7 +27,11 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="flex justify-end items-center p-4">
+    <nav className="flex justify-between items-center p-4">
+      <div className="flex items-center gap-2">
+        <FaStore className="text-4xl text-white" />
+        <span className="text-3xl font-bold text-white">TechStore</span>
+      </div>
       <div className="flex items-center gap-4 font-bold">
         <button
           className="bg-red-500/40 text-white px-4 py-2 rounded-md hover:bg-red-500/60 transition-all duration-300"
