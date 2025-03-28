@@ -124,7 +124,7 @@ export function CreateProduct({ addProduct }: CreateProductProps) {
                 className="w-full text-black px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-dark_green"
                 placeholder="0"
                 value={quantity}
-                onChange={(e) => { setQuantity(parseInt(e.target.value)); }}
+                onChange={(e) => { setQuantity(e.target.value); }}
               />
             </div>
           </div>
