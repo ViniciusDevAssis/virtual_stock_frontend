@@ -6,7 +6,7 @@ type Product = {
   name: string;
   description: string;
   price: number;
-  quantity: number;
+  inventory: number;
 };
 
 type CreateProductProps = {
@@ -23,6 +23,14 @@ export function CreateProduct({ addProduct }: CreateProductProps) {
     e.preventDefault();
     setError("");
 
+    // Converte o preço para número decimal, substituindo "," por "."
+    const formattedPrice = parseFloat(price.replace(",", "."));
+
+    if (isNaN(formattedPrice) || formattedPrice <= 0) {
+      setError("Preço inválido");
+      return;
+    }
+
     try {
       console.log("Enviando requisição para cadastro de produto...");
       const res = await fetch("http://localhost:8080/products", {
@@ -34,7 +42,7 @@ export function CreateProduct({ addProduct }: CreateProductProps) {
             .find((cookie) => cookie.startsWith("token="))
             ?.split("=")[1]}`,
         },
-        body: JSON.stringify({ name, description, price }),
+        body: JSON.stringify({ name, description, price: formattedPrice }),
       });
 
       if (!res.ok) {
@@ -95,18 +103,21 @@ export function CreateProduct({ addProduct }: CreateProductProps) {
             <div className="flex flex-col mr-4">
               <label className="block text-gray-700">Preço</label>
               <input
-                type="number"
+                type="text"
                 className="w-full text-black px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-dark_green"
                 placeholder="R$ 0,00"
                 value={price}
-                onChange={(e) => setPrice(e.target.value)}
+                onChange={(e) => {
+                  const value = e.target.value.replace(",", ".");
+                  setPrice(value);
+                }}
               />
             </div>
           </div>
           {error ? <p className="text-red-500">{error}</p> : ""}
           <button
             type="submit"
-            className="w-full bg-dark_blue text-white px-4 py-2 font-bold rounded-lg hover:bg-dark_green"
+            className="w-full bg-dark_green text-white px-4 py-2 font-bold rounded-lg hover:bg-dark_green"
           >
             Salvar Produto
           </button>
@@ -115,7 +126,7 @@ export function CreateProduct({ addProduct }: CreateProductProps) {
         <div className="mt-4 text-center">
           <button
             onClick={cancel}
-            className="w-full bg-dark_blue text-white px-4 py-2 font-bold rounded-lg hover:bg-dark_green"
+            className="w-full bg-red-500 text-white px-4 py-2 font-bold rounded-lg hover:bg-dark_green"
           >
             Cancelar
           </button>
