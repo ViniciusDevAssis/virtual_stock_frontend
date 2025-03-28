@@ -88,7 +88,7 @@ export default function Login() {
           <p className="text-sm text-gray-700">
             Ainda não tem uma conta?
             <a
-              href="/register"
+              href="/auth/register"
               className="text-dark_blue hover:text-dark_green"
             >
               Cadastre-se
