@@ -34,3 +34,4 @@ npm run dev
 ```
 
 O projeto estará disponível em http://localhost:3000 no seu navegador.
+Feito por [ViniciusDevAssis](https://github.com/ViniciusDevAssis) 🚀
